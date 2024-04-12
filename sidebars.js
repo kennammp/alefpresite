@@ -39,10 +39,6 @@ module.exports = {
           type: 'doc',
           id: 'overview/whyedge'
         },
-        {
-          type: 'doc',
-          id: 'overview/usecases'
-        }
       ]
     },
     {
