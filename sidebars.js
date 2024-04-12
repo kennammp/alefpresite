@@ -69,6 +69,11 @@ module.exports = {
           id: 'quickstart/setupguide',
           //         label: 'Prepare for setup'
         },
+        {
+          type: 'doc',
+          id: 'quickstart/approvisioningguide',
+          //         label: 'Prepare for setup'
+        },
       ]
     },
     /*
