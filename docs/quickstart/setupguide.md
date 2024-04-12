@@ -455,7 +455,7 @@ print(response.text)
 ```
 
 
-### IP Management
+## IP Management
 
 You will configure IP pools on the Mobile Gateway from which UEs will be assigned IP addresses, block these out on your IPAM and advise us of the range used for the pool.  Dynamically assigning IP UE IP addresses via your IPAM is on our roadmap, please contact us for details.
 
@@ -467,14 +467,6 @@ Best practice is to statically assign AP addresses via your IPAM such that a giv
 
 :::
 
-The following parameters will need to be configured on your mobile APs:
-PLMN ID
-TAC
-Cell ID
-Mobile Gateway IP (MME)
-
-
-Once your APs are configured to communicate with the Mobile Gateway, your network infrastructure is ready. 
 
 ## SIM Provisioning
 
@@ -482,11 +474,10 @@ If you are using the [**Enterprise Mobile Gateway**](../howitworks/alefnetwork#e
 
 If you are using the [**Classic Mobile Gateway**](../howitworks/alefnetwork#classic-mobile-gateway), assuming you are ordering your SIMs from a 3rd party, once you have the SIM information (IMSI, K, Opc) as well as your PLMN, you will send this to us and we will add this information to the ID store in your Mobile Gateway. If we are providing the SIMs, we will do this for you.
 
-## Full provisioning example 
+## Full mobile network provisioning example 
 
 If you are ready to provision everything with a single `POST` request, the example below brings all the above steps together. 
 
-### Example
 
 #### Python `POST`
 
