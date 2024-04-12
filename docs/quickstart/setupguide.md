@@ -455,7 +455,7 @@ print(response.text)
 ```
 
 
-### IP Management
+## IP Management
 
 You will configure IP pools on the Mobile Gateway from which UEs will be assigned IP addresses, block these out on your IPAM and advise us of the range used for the pool.  Dynamically assigning IP UE IP addresses via your IPAM is on our roadmap, please contact us for details.
 
@@ -467,14 +467,6 @@ Best practice is to statically assign AP addresses via your IPAM such that a giv
 
 :::
 
-The following parameters will need to be configured on your mobile APs:
-PLMN ID
-TAC
-Cell ID
-Mobile Gateway IP (MME)
-
-
-Once your APs are configured to communicate with the Mobile Gateway, your network infrastructure is ready. 
 
 ## SIM Provisioning
 
