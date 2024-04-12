@@ -4,14 +4,13 @@
 
 
 
-Once the information checklist is completed, we will work with you to create your Private Mobile Network following these steps: 
+Once the information checklist is completed, you can create your Private Mobile Network following these steps: 
 
 1. [**Get your API Key**](#get-your-api-key)
-1. [**Create your Edge Point**](#create-your-edge-point)
+1. [**Create your mobile network infrastructure**](#create-your-mobile-network-infrastructure)
 1. [**Provision connectivity between your network and the Edge Point**](#provision-connectivity-between-your-network-and-the-edge-point)
 1. [**Configure your radius client (Enterprise Mobile Gateway only)**](#configure-your-radius-client-enterprise-mobile-gateway-only)
 1. [**Apply site RANs to your Mobile Gateway**](#apply-site-rans-to-your-mobile-gateway)
-1. [**Provision your mobile APs**](#provision-your-mobile-aps)
 1. [**SIM provisioning**](#sim-provisioning)
 
 
@@ -33,9 +32,9 @@ Please liaise with your Alef representative to get your API key. If you don't ha
 
 
 
-## Create your Edge Point
+## Create your mobile network infrastructure
 
-Your Edge Point configuration will consist of the following elements:
+Your Mobile Network infrastructure consists of the following elements:
 
 The **mobile core** where your mobile network session management takes place. This will always reside on an Alef Cloud location.
 
@@ -70,7 +69,7 @@ The **mobile core** where your mobile network session management takes place. Th
 
 
 
-The **Mobile Gateway** where your mobile network traffic will be presented to your network.
+The **Mobile Gateway** where your mobile network traffic will be presented to your network. The Mobile Gateway will present mobile traffic to your network at the Edge Point that you have connected to your network.
 
 ```json
             {
@@ -87,7 +86,7 @@ The **Mobile Gateway** where your mobile network traffic will be presented to yo
 
 ### Examples
 
-#### Python
+#### Python `POST`
 
 ```python
 
@@ -228,7 +227,7 @@ You will need ensure that your IAM can operate with the EMG’s Radius client. W
 
 :::
 
-You will need to configure your radius client to communicate with your Radius servers, firstly by configuring the client settings, then configuring the servers it will communicate with.
+You will need to configure your radius client to communicate with your Radius servers, firstly by configuring the client settings, then configuring the servers it will communicate with. You can either provision the radius client when you first create the Mobile Gateway with `POST`, or later on with `PUT`:
 
 Configure **radius client** settings:
 
@@ -255,7 +254,7 @@ Configure **radius client** settings:
 }
 ```
 
-Configure **Radius Servers** (You can configure up to three servers for each client, which you can either provision when you first configure the Mobile Gateway, or later on):
+Configure **Radius Servers** (You can configure up to three servers for each client, which you can either provision when you first configure the Mobile Gateway (`POST`), or later on (`PUT`):
 
 ```json
 {
@@ -283,7 +282,7 @@ Configure **Radius Servers** (You can configure up to three servers for each cli
 
 ### Examples
 
-#### Python
+#### Python `PUT`
 
 ```python
 
@@ -352,14 +351,14 @@ headers = {
 'Accept': 'application/json'
 }
 
-response = requests.request("POST", url, headers=headers, data=payload)
+response = requests.request("PUT", url, headers=headers, data=payload)
 
 print(response.text)
 ```
 
 ## Apply site RANs to your Mobile Gateway
 
-Once you have configured the mobile network infrastructure, you can attach it to the site or sites where your APs and mobile endpoints will reside. Your onsite APs make up a RAN at each site, therefore, you need to tell your Mobile Gateway about the site RANs it will be serving. A Mobile gateway can serve many sites, which you can either provision when you first configure the Mobile Gateway, or later on.
+Once you have configured the mobile network infrastructure, you can attach it to the site or sites where your APs and mobile endpoints will reside. Your onsite APs make up a RAN at each site, therefore, you need to tell your Mobile Gateway about the site RANs it will be serving. A Mobile gateway can serve many sites, which you can either provision when you first configure the Mobile Gateway (`POST`), or later on (`PUT`).
 
 Configure a **site RAN**:
 
@@ -383,7 +382,7 @@ Configure a **site RAN**:
 
 ### Examples
 
-#### Python
+#### Python `PUT`
 
 ```python
 import requests
@@ -422,86 +421,13 @@ headers = {
 'Accept': 'application/json'
 }
 
-response = requests.request("POST", url, headers=headers, data=payload)
+response = requests.request("PUT", url, headers=headers, data=payload)
 
 print(response.text)
 ```
 
 
-## Provision your mobile APs
 
-Once you have installed your mobile APs, and provisioned connectivity from them to your SAS provider, you can provision them on the Mobile Gateway. This can be done either when you first configure the Mobile Gateway, or later on.
-
-Provision a mobile AP.
-
-```json
-
-{
- "ran" : [ {
-      "_id" : "string",
-      "site" : "string",
-      "tac" : [ "string" ],
-      "mobile-access-point" : [ {
-        "_id" : "string",
-        "name" : "string",
-        "access-point-id" : "string",
-        "cell" : [ {
-          "cell-id" : "string"
-        } ],
-        "ip-addr" : "string",
-        "manufacturer" : {
-          "name" : "string",
-          "support-contact" : "string",
-          "cbrs-sas-account" : "string"
-        }
-      } ]
-    } ]
-  }
-
-  ```
-
-  ### Examples
-
-  #### Python
-```python
-import requests
-import json
-
-url = "https://api.alefedge.com/connectivity/v1/mobile-network/?authorization=<API_KEY>"
-
-payload = json.dumps(
-[{
- "ran" : [ {
-      "_id" : "string",
-      "site" : "string",
-      "tac" : [ "string" ],
-      "mobile-access-point" : [ {
-        "_id" : "string",
-        "name" : "string",
-        "access-point-id" : "string",
-        "cell" : [ {
-          "cell-id" : "string"
-        } ],
-        "ip-addr" : "string",
-        "manufacturer" : {
-          "name" : "string",
-          "support-contact" : "string",
-          "cbrs-sas-account" : "string"
-        }
-      } ]
-    } ]
-  } ]
-)
-
-
-headers = {
-'Accept': 'application/json'
-}
-
-response = requests.request("POST", url, headers=headers, data=payload)
-
-print(response.text) 
-```
 
 ## View your Alef Mobile Network configuration
 
@@ -527,6 +453,7 @@ response = requests.request("GET", url, headers=headers, data=payload)
 print(response.text)
 
 ```
+
 
 ### IP Management
 
@@ -554,3 +481,194 @@ Once your APs are configured to communicate with the Mobile Gateway, your networ
 If you are using the [**Enterprise Mobile Gateway**](../howitworks/alefnetwork#enterprise-mobile-gateway), you will need to provision your SIMs and keys into your existing ID store. 
 
 If you are using the [**Classic Mobile Gateway**](../howitworks/alefnetwork#classic-mobile-gateway), assuming you are ordering your SIMs from a 3rd party, once you have the SIM information (IMSI, K, Opc) as well as your PLMN, you will send this to us and we will add this information to the ID store in your Mobile Gateway. If we are providing the SIMs, we will do this for you.
+
+## Full provisioning example 
+
+If you are ready to provision everything with a single `POST` request, the example below brings all the above steps together. 
+
+### Example
+
+#### Python `POST`
+
+```python
+
+import requests
+import json
+
+url = "https://api.alefedge.com/connectivity/v1/mobile-network/?authorization=<API_KEY>"
+
+payload = json.dumps({
+  "_id": "string",
+  "name": "yournetworkname",
+  "account": "your-account",
+  "backbone-network": [
+    "string"
+  ],
+  "mobile-core": [
+    {
+      "_id": "string",
+      "name": "string",
+      "network-integration": True,
+      "plmn": [
+        "string"
+      ],
+      "mobile-network-displayed-name": "string",
+      "mme": [
+        {
+          "group-id": "string",
+          "code": "string",
+          "ip-addr": "string",
+          "name": "string"
+        }
+      ],
+      "sgw-ip-addr": [
+        "string"
+      ],
+      "tac-range": {
+        "start": "string",
+        "end": "string"
+      },
+      "mobile-gateway": [
+        {
+          "_id": "string",
+          "name": "string",
+          "logical-system": "string",
+          "routing-instance": "string",
+          "edgepoint": "string",
+          "mme-group-id": "string",
+          "mme-code": "string",
+          "sgw-ip-addr": "string",
+          "radius-client": {
+            "nas-ip-address": "string",
+            "nas-ipv6-address": "string",
+            "nas-identifier": "string",
+            "dynamic-authorization": {
+              "local-endpoint": [
+                {
+                  "address": "string",
+                  "port": "string",
+                  "transport": "udp"
+                }
+              ],
+              "allowed-client": [
+                {
+                  "address": "string",
+                  "shared-key": "string",
+                  "allow-coa-requests": True,
+                  "allow-disconnect-requests": True
+                }
+              ]
+            },
+            "auth-server": [
+              {
+                "source-address": "string",
+                "shared-key": "string",
+                "priority": "string",
+                "transport": {
+                  "udp": {
+                    "timeout": "string",
+                    "max-retries": "string"
+                  }
+                },
+                "reconnect-time": "string",
+                "dead-interval": "string",
+                "send-status-server": True,
+                "name": "string"
+              }
+            ],
+            "accounting-server": [
+              {
+                "name": "string",
+                "priority": "string"
+              }
+            ],
+            "nac-session": [
+              {
+                "index": "string",
+                "imsi": "string",
+                "ue-ip": "string",
+                "rc": "string",
+                "mg": "string",
+                "site": "string"
+              }
+            ],
+            "nac-log": [
+              {
+                "index": "string",
+                "item": "string"
+              }
+            ],
+            "acl": [
+              {
+                "index": "string",
+                "item": "string"
+              }
+            ]
+          },
+          "sgi": {
+            "interface": [
+              {
+                "name": "string",
+                "ip-addr": "string",
+                "gateway-ip-addr": "string"
+              }
+            ]
+          },
+          "transport": {
+            "name": "string"
+          }
+        }
+      ]
+    }
+  ],
+  "ran": [
+    {
+      "_id": "string",
+      "name": "string",
+      "site": "string",
+      "generation": "4",
+      "mme-ip-addr": [
+        "string"
+      ],
+      "mobile-core-name": "string",
+      "number-of-access-points": "string",
+      "ran-ip-subnet": "string",
+      "manufacturer": {
+        "name": "string",
+        "support-contact": "string",
+        "cbrs-sas-account": "string"
+      },
+      "tac": [
+        "string"
+      ],
+      "mobile-access-point": [
+        {
+          "_id": "string",
+          "name": "string",
+          "access-point-id": "string",
+          "cell": [
+            {
+              "cell-id": "string"
+            }
+          ],
+          "ip-addr": "string",
+          "manufacturer": {
+            "name": "string",
+            "support-contact": "string",
+            "cbrs-sas-account": "string"
+          }
+        }
+      ]
+    }
+  ]
+}
+)
+
+headers = {
+'Accept': 'application/json'
+}
+
+response = requests.request("POST", url, headers=headers, data=payload)
+
+print(response.text)
+```
