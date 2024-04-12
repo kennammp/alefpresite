@@ -122,7 +122,7 @@ module.exports = {
    */
     {
       type: 'category',
-      label: 'API',
+      label: 'API reference',
       link: {
         type: 'generated-index'
       },
