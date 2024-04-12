@@ -482,11 +482,10 @@ If you are using the [**Enterprise Mobile Gateway**](../howitworks/alefnetwork#e
 
 If you are using the [**Classic Mobile Gateway**](../howitworks/alefnetwork#classic-mobile-gateway), assuming you are ordering your SIMs from a 3rd party, once you have the SIM information (IMSI, K, Opc) as well as your PLMN, you will send this to us and we will add this information to the ID store in your Mobile Gateway. If we are providing the SIMs, we will do this for you.
 
-## Full provisioning example 
+## Full mobile network provisioning example 
 
 If you are ready to provision everything with a single `POST` request, the example below brings all the above steps together. 
 
-### Example
 
 #### Python `POST`
 
