@@ -7,12 +7,13 @@
 Once the information checklist is completed, you can create your Private Mobile Network following these steps: 
 
 1. [**Get your API Key**](#get-your-api-key)
-1. [**Create your mobile network infrastructure**](#create-your-mobile-network-infrastructure)
+1. [**Create your Mobile Gateway**](#create-your-mobile-gateway)
 1. [**Provision connectivity between your network and the Edge Point**](#provision-connectivity-between-your-network-and-the-edge-point)
 1. [**Configure your radius client (Enterprise Mobile Gateway only)**](#configure-your-radius-client-enterprise-mobile-gateway-only)
 1. [**Apply site RANs to your Mobile Gateway**](#apply-site-rans-to-your-mobile-gateway)
 1. [**SIM provisioning**](#sim-provisioning)
 
+If you are familiar with the process, and want to provision all elements of mobile network with a single request, jump ahead to the [**Full mobile network provisioning example**](#full-mobile-network-provisioning-example).
 
 :::tip 
 
@@ -32,11 +33,11 @@ Please liaise with your Alef representative to get your API key. If you don't ha
 
 
 
-## Create your mobile network infrastructure
+## Create your Mobile Gateway
 
-Your Mobile Network infrastructure consists of the following elements:
+Your [**Mobile Gateway**](../howitworks/alefnetwork#enterprise-mobile-gateway) consists of the mobile core running in the Alef Cloud and the services running on your [**Edge Point**](../howitworks/alefnetwork#edge-point) that will present mobile traffic to your network.
 
-The **mobile core** where your mobile network session management takes place. This will always reside on an Alef Cloud location.
+Create a Mobile Gateway:
 
 ```json
 
@@ -64,14 +65,6 @@ The **mobile core** where your mobile network session management takes place. Th
                     "end": "string"
                 }
             }
-```
-
-
-
-
-The **Mobile Gateway** where your mobile network traffic will be presented to your network. The Mobile Gateway will present mobile traffic to your network at the Edge Point that you have connected to your network.
-
-```json
             {
                 "_id": "string",
                 "name": "string",
@@ -217,17 +210,26 @@ We support L2VPN and L3VPN, the Edge Point being seen by your MPLS provider netw
 #### Direct Connect
 If you have footprint at a colo that is also hosting Alef infrastructure, the Interconnect service can connect directly with your CE router over ethernet at L2 or L3. This also applies if you are installing an Edge Point on-prem, which we refer to as a *Customer Location* Edge Point.
 
+<br>
+</br>
+
+:::tip
+
+The following configuration steps can be done at the same time you create your Mobile Gateway (see [**Full mobile network provisioning example**](#full-mobile-network-provisioning-example)) or later on using the `PUT` examples below.
+
+:::
+
 ##  Configure your Radius Client (Enterprise Mobile Gateway only)
 
 If you are using an [**Enterprise Mobile Gateway**](../howitworks/alefnetwork#enterprise-mobile-gateway), your mobile core will use your IAM for mobile endpoint auth via your radius client. 
 
 :::note
 
-You will need ensure that your IAM can operate with the EMG’s Radius client. We can provide guidance on this.
+You will need ensure that your IAM is compatible with the EMG’s Radius client. We can provide guidance on this.
 
 :::
 
-You will need to configure your radius client to communicate with your Radius servers, firstly by configuring the client settings, then configuring the servers it will communicate with. You can either provision the radius client when you first create the Mobile Gateway with `POST`, or later on with `PUT`:
+You will need to configure your radius client to communicate with your radius servers, firstly by configuring the client settings, then configuring the servers it will communicate with. 
 
 Configure **radius client** settings:
 
@@ -254,7 +256,7 @@ Configure **radius client** settings:
 }
 ```
 
-Configure **Radius Servers** (You can configure up to three servers for each client, which you can either provision when you first configure the Mobile Gateway (`POST`), or later on (`PUT`):
+Configure **radius servers** (You can configure up to three servers for each client)
 
 ```json
 {
@@ -358,7 +360,7 @@ print(response.text)
 
 ## Apply site RANs to your Mobile Gateway
 
-Once you have configured the mobile network infrastructure, you can attach it to the site or sites where your APs and mobile endpoints will reside. Your onsite APs make up a RAN at each site, therefore, you need to tell your Mobile Gateway about the site RANs it will be serving. A Mobile gateway can serve many sites, which you can either provision when you first configure the Mobile Gateway (`POST`), or later on (`PUT`).
+Once you have configured your Mobile Gateway, you can attach it to the site or sites where your APs and mobile endpoints will reside. Your onsite APs make up a RAN at each site, therefore, you need to tell your Mobile Gateway about the site RANs it will be serving. 
 
 Configure a **site RAN**:
 
@@ -435,7 +437,7 @@ Now you have configured your Alef mobile network, you can view the whole configu
 
 ### Examples
 
-#### Python
+#### Python `GET`
 
 ```python
 
@@ -473,6 +475,9 @@ Best practice is to statically assign AP addresses via your IPAM such that a giv
 If you are using the [**Enterprise Mobile Gateway**](../howitworks/alefnetwork#enterprise-mobile-gateway), you will need to provision your SIMs and keys into your existing ID store. 
 
 If you are using the [**Classic Mobile Gateway**](../howitworks/alefnetwork#classic-mobile-gateway), assuming you are ordering your SIMs from a 3rd party, once you have the SIM information (IMSI, K, Opc) as well as your PLMN, you will send this to us and we will add this information to the ID store in your Mobile Gateway. If we are providing the SIMs, we will do this for you.
+
+<br>
+</br>
 
 ## Full mobile network provisioning example 
 

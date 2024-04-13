@@ -7,7 +7,7 @@ Once you have set up your mobile network infrastructure, you can provision your 
 
 :::tip
 
-You will be using the [**`mobile-access-point`**](https://app.swaggerhub.com/apis-docs/MMCKENN72_1/alef-mobile_network_api/1.0.0-oas3-mm1#/Create%20mobile-access-point/create_mobile-network_ran_mobile-access-point_mobile-access-point_by_id) endpoint to carry out the tasks in this section. 
+You will be using the [**`mobile-access-point`**](https://app.swaggerhub.com/apis-docs/MMCKENN72_1/alef-mobile_network_api/1.0.0-oas3-mm1#/Create%20mobile-access-point/create_mobile-network_ran_mobile-access-point_mobile-access-point_by_id) API endpoint to carry out the tasks in this section. 
 
 :::
 
@@ -86,7 +86,7 @@ You can either list all your currently configured mobile AP names, or view the c
 
 #### Examples
 
-##### Python
+##### Python `GET`
 
 ```python
 
@@ -110,7 +110,7 @@ print(response.text)
 
 #### Examples
 
-##### Python
+##### Python `GET`
 
 ```python
 
