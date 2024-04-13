@@ -437,7 +437,7 @@ Now you have configured your Alef mobile network, you can view the whole configu
 
 ### Examples
 
-#### Python
+#### Python `GET`
 
 ```python
 

@@ -86,7 +86,7 @@ You can either list all your currently configured mobile AP names, or view the c
 
 #### Examples
 
-##### Python
+##### Python `GET`
 
 ```python
 
@@ -110,7 +110,7 @@ print(response.text)
 
 #### Examples
 
-##### Python
+##### Python `GET`
 
 ```python
 
