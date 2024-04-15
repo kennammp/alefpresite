@@ -2,7 +2,7 @@
 
 ## Provision your mobile APs
 
-Once you have set up your mobile network infrastructure, you can provision your APs. Although it is possilble to provision APs when you first bring up your mobile network infrastructure, it's usually preferable to provision APs once the infrastructure is up and running.
+Once you have set up your mobile network infrastructure, you can provision your APs. Although it is possible to provision APs when you first bring up your mobile network infrastructure, it's usually preferable to provision APs once the infrastructure is up and running.
 
 
 :::tip
