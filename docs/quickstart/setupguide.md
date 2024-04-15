@@ -13,7 +13,12 @@ Once the information checklist is completed, you can create your Private Mobile 
 1. [**Apply site RANs to your Mobile Gateway**](#apply-site-rans-to-your-mobile-gateway)
 1. [**SIM provisioning**](#sim-provisioning)
 
+
+
+
 If you are familiar with the process, and want to provision all elements of mobile network with a single request, jump ahead to the [**Full mobile network provisioning example**](#full-mobile-network-provisioning-example).
+
+
 
 :::tip 
 
@@ -21,7 +26,7 @@ The following section contains mobile network terminology, so if you are not fam
 
 :::
 
-:::tip
+:::info
 
 You will be using the Alef Mobile Network API to carry out the tasks in this section. Refer to the [**API reference documentation**](https://app.swaggerhub.com/apis-docs/MMCKENN72_1/alef-mobile_network_api/1.0.0-oas3-mm1) to discover more about the API such as the schema and descriptions of the values you will be using. You can also try out requests against the mock API without an API key.
 
