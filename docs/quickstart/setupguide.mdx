@@ -17,7 +17,7 @@ Once the information checklist is completed, you can create your Private Mobile 
 
 
 
-If you are familiar with the process, and want to provision all elements of mobile network with a single request, jump ahead to the [**Full mobile network provisioning example**](#full-mobile-network-provisioning-example).
+If you are familiar with the process, and want to provision all elements of mobile network with a single request, jump ahead to the [**Full mobile network provisioning examples**](#full-mobile-network-provisioning-examples).
 
 
 
@@ -281,7 +281,7 @@ If you have footprint at a colo that is also hosting Alef infrastructure, the In
 
 :::tip
 
-The following configuration steps can be done at the same time you create your Mobile Gateway (see [**Full mobile network provisioning example**](#full-mobile-network-provisioning-example)) or later on using the `PUT` examples below.
+The following configuration steps can be done at the same time you create your Mobile Gateway (see [**Full mobile network provisioning examples**](#full-mobile-network-provisioning-examples)) or after you have created it using the `PUT` examples below.
 
 :::
 
@@ -863,7 +863,7 @@ If you are using the [**Classic Mobile Gateway**](../howitworks/alefnetwork#clas
 
   ```bash
   curl -X 'POST' \
-  'https://virtserver.swaggerhub.com/MMCKENN72_1/alef-mobile_network_api/1.0.0-oas3-mm1/connectivity/v1/mobile-network/bla/' \
+  'https://api.alefedge.com/connectivity/v1/mobile-network/?authorization=<API_KEY>' \
   -H 'accept: */*' \
   -H 'Content-Type: application/json' \
   -d '{
