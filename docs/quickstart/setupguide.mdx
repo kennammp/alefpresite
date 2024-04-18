@@ -15,11 +15,381 @@ Once the information checklist is completed, you can create your Private Mobile 
 1. [**SIM provisioning**](#sim-provisioning)
 
 
+:::tip
+
+If you are familiar with the process and want to provision all elements of mobile network with a single request, expand below to see full mobile network provisioning examples.
+
+<details>
+  <summary>Expand here to see the full mobile network <code>POST</code> request. </summary>
 
 
-If you are familiar with the process, and want to provision all elements of mobile network with a single request, jump ahead to the [**Full mobile network provisioning examples**](#full-mobile-network-provisioning-examples).
+<Tabs>
+  <TabItem value="Python" label="Python" default>
+
+  ```python
+
+  import requests
+  import json
+
+  url = "https://api.alefedge.com/connectivity/v1/mobile-network/?authorization=<API_KEY>"
+
+  payload = json.dumps({
+    "_id": "string",
+    "name": "yournetworkname",
+    "account": "your-account",
+    "backbone-network": [
+      "string"
+    ],
+    "mobile-core": [
+      {
+        "_id": "string",
+        "name": "string",
+        "network-integration": True,
+        "plmn": [
+          "string"
+        ],
+        "mobile-network-displayed-name": "string",
+        "mme": [
+          {
+            "group-id": "string",
+            "code": "string",
+            "ip-addr": "string",
+            "name": "string"
+          }
+        ],
+        "sgw-ip-addr": [
+          "string"
+        ],
+        "tac-range": {
+          "start": "string",
+          "end": "string"
+        },
+        "mobile-gateway": [
+          {
+            "_id": "string",
+            "name": "string",
+            "logical-system": "string",
+            "routing-instance": "string",
+            "edgepoint": "string",
+            "mme-group-id": "string",
+            "mme-code": "string",
+            "sgw-ip-addr": "string",
+            "radius-client": {
+              "nas-ip-address": "string",
+              "nas-ipv6-address": "string",
+              "nas-identifier": "string",
+              "dynamic-authorization": {
+                "local-endpoint": [
+                  {
+                    "address": "string",
+                    "port": "string",
+                    "transport": "udp"
+                  }
+                ],
+                "allowed-client": [
+                  {
+                    "address": "string",
+                    "shared-key": "string",
+                    "allow-coa-requests": True,
+                    "allow-disconnect-requests": True
+                  }
+                ]
+              },
+              "auth-server": [
+                {
+                  "source-address": "string",
+                  "shared-key": "string",
+                  "priority": "string",
+                  "transport": {
+                    "udp": {
+                      "timeout": "string",
+                      "max-retries": "string"
+                    }
+                  },
+                  "reconnect-time": "string",
+                  "dead-interval": "string",
+                  "send-status-server": True,
+                  "name": "string"
+                }
+              ],
+              "accounting-server": [
+                {
+                  "name": "string",
+                  "priority": "string"
+                }
+              ],
+              "nac-session": [
+                {
+                  "index": "string",
+                  "imsi": "string",
+                  "ue-ip": "string",
+                  "rc": "string",
+                  "mg": "string",
+                  "site": "string"
+                }
+              ],
+              "nac-log": [
+                {
+                  "index": "string",
+                  "item": "string"
+                }
+              ],
+              "acl": [
+                {
+                  "index": "string",
+                  "item": "string"
+                }
+              ]
+            },
+            "sgi": {
+              "interface": [
+                {
+                  "name": "string",
+                  "ip-addr": "string",
+                  "gateway-ip-addr": "string"
+                }
+              ]
+            },
+            "transport": {
+              "name": "string"
+            }
+          }
+        ]
+      }
+    ],
+    "ran": [
+      {
+        "_id": "string",
+        "name": "string",
+        "site": "string",
+        "generation": "4",
+        "mme-ip-addr": [
+          "string"
+        ],
+        "mobile-core-name": "string",
+        "number-of-access-points": "string",
+        "ran-ip-subnet": "string",
+        "manufacturer": {
+          "name": "string",
+          "support-contact": "string",
+          "cbrs-sas-account": "string"
+        },
+        "tac": [
+          "string"
+        ],
+        "mobile-access-point": [
+          {
+            "_id": "string",
+            "name": "string",
+            "access-point-id": "string",
+            "cell": [
+              {
+                "cell-id": "string"
+              }
+            ],
+            "ip-addr": "string",
+            "manufacturer": {
+              "name": "string",
+              "support-contact": "string",
+              "cbrs-sas-account": "string"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  )
+
+  headers = {
+  'Accept': 'application/json'
+  }
+
+  response = requests.request("POST", url, headers=headers, data=payload)
+
+  print(response.text)
+  ```
 
 
+  </TabItem>
+  <TabItem value="curl" label="Curl">
+
+  ```bash
+  curl -X 'POST' \
+  'https://api.alefedge.com/connectivity/v1/mobile-network/?authorization=<API_KEY>' \
+  -H 'accept: */*' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "_id": "string",
+  "name": "yournetworkname",
+  "account": "your-account",
+  "backbone-network": [
+    "string"
+  ],
+  "mobile-core": [
+      {
+        "_id": "string",
+        "name": "string",
+        "network-integration": True,
+        "plmn": [
+          "string"
+        ],
+        "mobile-network-displayed-name": "string",
+        "mme": [
+          {
+            "group-id": "string",
+            "code": "string",
+            "ip-addr": "string",
+            "name": "string"
+          }
+        ],
+        "sgw-ip-addr": [
+          "string"
+        ],
+        "tac-range": {
+          "start": "string",
+          "end": "string"
+        },
+        "mobile-gateway": [
+          {
+            "_id": "string",
+            "name": "string",
+            "logical-system": "string",
+            "routing-instance": "string",
+            "edgepoint": "string",
+            "mme-group-id": "string",
+            "mme-code": "string",
+            "sgw-ip-addr": "string",
+            "radius-client": {
+              "nas-ip-address": "string",
+              "nas-ipv6-address": "string",
+              "nas-identifier": "string",
+              "dynamic-authorization": {
+                "local-endpoint": [
+                  {
+                    "address": "string",
+                    "port": "string",
+                    "transport": "udp"
+                  }
+                ],
+                "allowed-client": [
+                  {
+                    "address": "string",
+                    "shared-key": "string",
+                    "allow-coa-requests": True,
+                    "allow-disconnect-requests": True
+                  }
+                ]
+              },
+              "auth-server": [
+                {
+                  "source-address": "string",
+                  "shared-key": "string",
+                  "priority": "string",
+                  "transport": {
+                    "udp": {
+                      "timeout": "string",
+                      "max-retries": "string"
+                    }
+                  },
+                  "reconnect-time": "string",
+                  "dead-interval": "string",
+                  "send-status-server": True,
+                  "name": "string"
+                }
+              ],
+              "accounting-server": [
+                {
+                  "name": "string",
+                  "priority": "string"
+                }
+              ],
+              "nac-session": [
+                {
+                  "index": "string",
+                  "imsi": "string",
+                  "ue-ip": "string",
+                  "rc": "string",
+                  "mg": "string",
+                  "site": "string"
+                }
+              ],
+              "nac-log": [
+                {
+                  "index": "string",
+                  "item": "string"
+                }
+              ],
+              "acl": [
+                {
+                  "index": "string",
+                  "item": "string"
+                }
+              ]
+            },
+            "sgi": {
+              "interface": [
+                {
+                  "name": "string",
+                  "ip-addr": "string",
+                  "gateway-ip-addr": "string"
+                }
+              ]
+            },
+            "transport": {
+              "name": "string"
+            }
+          }
+        ]
+      }
+    ],
+    "ran": [
+      {
+        "_id": "string",
+        "name": "string",
+        "site": "string",
+        "generation": "4",
+        "mme-ip-addr": [
+          "string"
+        ],
+        "mobile-core-name": "string",
+        "number-of-access-points": "string",
+        "ran-ip-subnet": "string",
+        "manufacturer": {
+          "name": "string",
+          "support-contact": "string",
+          "cbrs-sas-account": "string"
+        },
+        "tac": [
+          "string"
+        ],
+        "mobile-access-point": [
+          {
+            "_id": "string",
+            "name": "string",
+            "access-point-id": "string",
+            "cell": [
+              {
+                "cell-id": "string"
+              }
+            ],
+            "ip-addr": "string",
+            "manufacturer": {
+              "name": "string",
+              "support-contact": "string",
+              "cbrs-sas-account": "string"
+            }
+          }
+        ]
+      }
+    ]
+  }
+  ```
+  </TabItem>
+</Tabs>
+
+</details>
+
+:::
 
 :::tip 
 
@@ -279,11 +649,6 @@ If you have footprint at a colo that is also hosting Alef infrastructure, the In
 <br>
 </br>
 
-:::tip
-
-The following configuration steps can be done at the same time you create your Mobile Gateway (see [**Full mobile network provisioning examples**](#full-mobile-network-provisioning-examples)) or after you have created it using the `PUT` examples below.
-
-:::
 
 ##  Configure your Radius Client (Enterprise Mobile Gateway only)
 
@@ -662,377 +1027,7 @@ If you are using the [**Enterprise Mobile Gateway**](../howitworks/alefnetwork#e
 
 If you are using the [**Classic Mobile Gateway**](../howitworks/alefnetwork#classic-mobile-gateway), assuming you are ordering your SIMs from a 3rd party, once you have the SIM information (IMSI, K, Opc) as well as your PLMN, you will send this to us and we will add this information to the ID store in your Mobile Gateway. If we are providing the SIMs, we will do this for you.
 
-<br>
-</br>
-
-## Full mobile network provisioning examples
-
-<details>
-  <summary>Expand here to see all the above steps in one <code>POST</code> request. </summary>
 
 
-<Tabs>
-  <TabItem value="Python" label="Python" default>
-
-  ```python
-
-  import requests
-  import json
-
-  url = "https://api.alefedge.com/connectivity/v1/mobile-network/?authorization=<API_KEY>"
-
-  payload = json.dumps({
-    "_id": "string",
-    "name": "yournetworkname",
-    "account": "your-account",
-    "backbone-network": [
-      "string"
-    ],
-    "mobile-core": [
-      {
-        "_id": "string",
-        "name": "string",
-        "network-integration": True,
-        "plmn": [
-          "string"
-        ],
-        "mobile-network-displayed-name": "string",
-        "mme": [
-          {
-            "group-id": "string",
-            "code": "string",
-            "ip-addr": "string",
-            "name": "string"
-          }
-        ],
-        "sgw-ip-addr": [
-          "string"
-        ],
-        "tac-range": {
-          "start": "string",
-          "end": "string"
-        },
-        "mobile-gateway": [
-          {
-            "_id": "string",
-            "name": "string",
-            "logical-system": "string",
-            "routing-instance": "string",
-            "edgepoint": "string",
-            "mme-group-id": "string",
-            "mme-code": "string",
-            "sgw-ip-addr": "string",
-            "radius-client": {
-              "nas-ip-address": "string",
-              "nas-ipv6-address": "string",
-              "nas-identifier": "string",
-              "dynamic-authorization": {
-                "local-endpoint": [
-                  {
-                    "address": "string",
-                    "port": "string",
-                    "transport": "udp"
-                  }
-                ],
-                "allowed-client": [
-                  {
-                    "address": "string",
-                    "shared-key": "string",
-                    "allow-coa-requests": True,
-                    "allow-disconnect-requests": True
-                  }
-                ]
-              },
-              "auth-server": [
-                {
-                  "source-address": "string",
-                  "shared-key": "string",
-                  "priority": "string",
-                  "transport": {
-                    "udp": {
-                      "timeout": "string",
-                      "max-retries": "string"
-                    }
-                  },
-                  "reconnect-time": "string",
-                  "dead-interval": "string",
-                  "send-status-server": True,
-                  "name": "string"
-                }
-              ],
-              "accounting-server": [
-                {
-                  "name": "string",
-                  "priority": "string"
-                }
-              ],
-              "nac-session": [
-                {
-                  "index": "string",
-                  "imsi": "string",
-                  "ue-ip": "string",
-                  "rc": "string",
-                  "mg": "string",
-                  "site": "string"
-                }
-              ],
-              "nac-log": [
-                {
-                  "index": "string",
-                  "item": "string"
-                }
-              ],
-              "acl": [
-                {
-                  "index": "string",
-                  "item": "string"
-                }
-              ]
-            },
-            "sgi": {
-              "interface": [
-                {
-                  "name": "string",
-                  "ip-addr": "string",
-                  "gateway-ip-addr": "string"
-                }
-              ]
-            },
-            "transport": {
-              "name": "string"
-            }
-          }
-        ]
-      }
-    ],
-    "ran": [
-      {
-        "_id": "string",
-        "name": "string",
-        "site": "string",
-        "generation": "4",
-        "mme-ip-addr": [
-          "string"
-        ],
-        "mobile-core-name": "string",
-        "number-of-access-points": "string",
-        "ran-ip-subnet": "string",
-        "manufacturer": {
-          "name": "string",
-          "support-contact": "string",
-          "cbrs-sas-account": "string"
-        },
-        "tac": [
-          "string"
-        ],
-        "mobile-access-point": [
-          {
-            "_id": "string",
-            "name": "string",
-            "access-point-id": "string",
-            "cell": [
-              {
-                "cell-id": "string"
-              }
-            ],
-            "ip-addr": "string",
-            "manufacturer": {
-              "name": "string",
-              "support-contact": "string",
-              "cbrs-sas-account": "string"
-            }
-          }
-        ]
-      }
-    ]
-  }
-  )
-
-  headers = {
-  'Accept': 'application/json'
-  }
-
-  response = requests.request("POST", url, headers=headers, data=payload)
-
-  print(response.text)
-  ```
 
 
-  </TabItem>
-  <TabItem value="curl" label="Curl">
-
-  ```bash
-  curl -X 'POST' \
-  'https://api.alefedge.com/connectivity/v1/mobile-network/?authorization=<API_KEY>' \
-  -H 'accept: */*' \
-  -H 'Content-Type: application/json' \
-  -d '{
-  "_id": "string",
-  "name": "yournetworkname",
-  "account": "your-account",
-  "backbone-network": [
-    "string"
-  ],
-  "mobile-core": [
-      {
-        "_id": "string",
-        "name": "string",
-        "network-integration": True,
-        "plmn": [
-          "string"
-        ],
-        "mobile-network-displayed-name": "string",
-        "mme": [
-          {
-            "group-id": "string",
-            "code": "string",
-            "ip-addr": "string",
-            "name": "string"
-          }
-        ],
-        "sgw-ip-addr": [
-          "string"
-        ],
-        "tac-range": {
-          "start": "string",
-          "end": "string"
-        },
-        "mobile-gateway": [
-          {
-            "_id": "string",
-            "name": "string",
-            "logical-system": "string",
-            "routing-instance": "string",
-            "edgepoint": "string",
-            "mme-group-id": "string",
-            "mme-code": "string",
-            "sgw-ip-addr": "string",
-            "radius-client": {
-              "nas-ip-address": "string",
-              "nas-ipv6-address": "string",
-              "nas-identifier": "string",
-              "dynamic-authorization": {
-                "local-endpoint": [
-                  {
-                    "address": "string",
-                    "port": "string",
-                    "transport": "udp"
-                  }
-                ],
-                "allowed-client": [
-                  {
-                    "address": "string",
-                    "shared-key": "string",
-                    "allow-coa-requests": True,
-                    "allow-disconnect-requests": True
-                  }
-                ]
-              },
-              "auth-server": [
-                {
-                  "source-address": "string",
-                  "shared-key": "string",
-                  "priority": "string",
-                  "transport": {
-                    "udp": {
-                      "timeout": "string",
-                      "max-retries": "string"
-                    }
-                  },
-                  "reconnect-time": "string",
-                  "dead-interval": "string",
-                  "send-status-server": True,
-                  "name": "string"
-                }
-              ],
-              "accounting-server": [
-                {
-                  "name": "string",
-                  "priority": "string"
-                }
-              ],
-              "nac-session": [
-                {
-                  "index": "string",
-                  "imsi": "string",
-                  "ue-ip": "string",
-                  "rc": "string",
-                  "mg": "string",
-                  "site": "string"
-                }
-              ],
-              "nac-log": [
-                {
-                  "index": "string",
-                  "item": "string"
-                }
-              ],
-              "acl": [
-                {
-                  "index": "string",
-                  "item": "string"
-                }
-              ]
-            },
-            "sgi": {
-              "interface": [
-                {
-                  "name": "string",
-                  "ip-addr": "string",
-                  "gateway-ip-addr": "string"
-                }
-              ]
-            },
-            "transport": {
-              "name": "string"
-            }
-          }
-        ]
-      }
-    ],
-    "ran": [
-      {
-        "_id": "string",
-        "name": "string",
-        "site": "string",
-        "generation": "4",
-        "mme-ip-addr": [
-          "string"
-        ],
-        "mobile-core-name": "string",
-        "number-of-access-points": "string",
-        "ran-ip-subnet": "string",
-        "manufacturer": {
-          "name": "string",
-          "support-contact": "string",
-          "cbrs-sas-account": "string"
-        },
-        "tac": [
-          "string"
-        ],
-        "mobile-access-point": [
-          {
-            "_id": "string",
-            "name": "string",
-            "access-point-id": "string",
-            "cell": [
-              {
-                "cell-id": "string"
-              }
-            ],
-            "ip-addr": "string",
-            "manufacturer": {
-              "name": "string",
-              "support-contact": "string",
-              "cbrs-sas-account": "string"
-            }
-          }
-        ]
-      }
-    ]
-  }
-  ```
-  </TabItem>
-</Tabs>
-
-</details>
