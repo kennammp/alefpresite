@@ -126,6 +126,15 @@ const config = {
     ({
       navbar: {
         // title: "Alef Edge",
+        items: [
+          {
+            href: 'https://github.com/kennammp/alefpresite',
+            position: 'right',
+            className: 'header-github-link',
+            'aria-label': 'GitHub repository',
+          },
+        ],
+
         logo: {
           src: "image/alef_logo_black.png",
           srcDark: "image/alef_logo_white.png",
