@@ -1,0 +1,110 @@
+{
+  "docs": [
+    {
+      "type": "doc",
+      "label": "Welcome",
+      "id": "intro"
+    },
+    {
+      "type": "category",
+      "label": "Introduction",
+      "items": [
+        {
+          "type": "doc",
+          "id": "overview/whatwedo"
+        },
+        {
+          "type": "doc",
+          "id": "overview/whyedge"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "How it all works",
+      "items": [
+        {
+          "type": "doc",
+          "id": "howitworks/keyconcepts"
+        },
+        {
+          "type": "doc",
+          "id": "howitworks/alefnetwork"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Quickstart Guide",
+      "items": [
+        {
+          "type": "doc",
+          "id": "quickstart/checklist"
+        },
+        {
+          "type": "doc",
+          "id": "quickstart/setupguide"
+        },
+        {
+          "type": "doc",
+          "id": "quickstart/approvisioningguide"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "API reference",
+      "link": {
+        "type": "generated-index"
+      },
+      "items": [
+        {
+          "type": "link",
+          "label": "Provisioning API",
+          "href": "https://app.swaggerhub.com/apis-docs/MMCKENN72_1/alef-mobile_network_api/1.0.0-oas3-mm1"
+        },
+        {
+          "type": "link",
+          "label": "Reporting API",
+          "href": "https://app.swaggerhub.com/apis-docs/MMCKENN72_1/reporting/1.0.0-oas3"
+        }
+      ]
+    },
+    {
+      "type": "category",
+      "label": "Reporting Guide",
+      "link": {
+        "type": "generated-index"
+      },
+      "items": [
+        {
+          "type": "doc",
+          "id": "reporting/reporting"
+        },
+        {
+          "type": "doc",
+          "id": "reporting/uereports"
+        },
+        {
+          "type": "doc",
+          "id": "reporting/epreports"
+        }
+      ]
+    },
+    {
+      "type": "doc",
+      "label": "Advanced",
+      "id": "advanced"
+    },
+    {
+      "type": "doc",
+      "label": "Glossary",
+      "id": "glossary"
+    },
+    {
+      "type": "doc",
+      "label": "Support",
+      "id": "support"
+    }
+  ]
+}
